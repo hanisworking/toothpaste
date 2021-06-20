@@ -51,6 +51,8 @@
                 }
                 console.log("设置时间在执行");
             }
+            var bling=document.getElementById("bling");
+            bling.hidden=true;
             //牙渍透明度函数
             var dirtyt= document.getElementById("bruDirthTeeth")
             function dirty(){
@@ -64,8 +66,17 @@
                     dirtyt.style.opacity=0.4;
                 }else if(parseFloat(teeth.style.left)<=80){
                     dirtyt.style.opacity=0.2;
-                }else if(parseFloat(teeth.style.left)<=86){
+                }else if(parseFloat(teeth.style.left)<85){
                     dirtyt.style.opacity=0;
+                    
+                }
+                else if(parseFloat(teeth.style.left)==85){
+            
+                        bling.hidden=false;
+                  
+                    setTimeout(function () {
+                            window.location.href = "final.html";
+                        }, 3000);
                 }
             }
             //泡泡变化动画
@@ -117,11 +128,14 @@
 
                         smpop.style.height="100%";
                         smpop.style.width="120%";
+                       
                         //进度条动画
                         mypro=setTimeout(function(){ 
                             process(); dirty(); 
                         },30);
-                        var mypopmove=setTimeout(function(){ pop() },100);
+                        var mypopmove=setTimeout(function(){ pop() 
+                        },100);
+                        
                     }else{
                         brushList[0].style.display="none";
                         brushList[1].style.display="block";
@@ -133,6 +147,7 @@
                     }
                 })
             })
+ 
         }
     </script>
     <style>
@@ -212,6 +227,7 @@
             justify-content: center;
             position: absolute;
             z-index: 100;
+            z-index: 999;
         }
         #brushing>.brush>img,
         #brushing>.pop>img{
@@ -226,6 +242,16 @@
         }
         #brushing .smpop>img{
             width: 120%;
+    
+        }
+        .bling{
+            position: absolute;
+            float: left;
+            width: 100%;
+            top: 33%;
+            right: 0%;
+            justify-content: center;
+            z-index: 9;
         }
     </style>
 </head>
@@ -270,6 +296,9 @@
             <img src="../img/pop1.gif" alt="" style="display: block;">
             <img src="../img/pop2.gif" alt="" style="display: none;">
             <img src="../img/pop3.gif" alt="" style="display: none;">             
+        </div>
+        <div>
+            <img class="bling" id="bling" src="../img/bling.gif" alt="">
         </div>
         
     </div>
